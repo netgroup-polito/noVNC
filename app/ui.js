@@ -142,6 +142,31 @@ const UI = {
             }
         }
 
+        var path = 'websockify';
+        var landing_page = 'vnc.html';
+
+        // If noVNC is not being served at the root path, prefix
+        // the default websocket path with the server path.
+        var pathName = window.location.pathname.slice(1);
+        if (pathName.length != 0) { // We are not at the root path
+            if (pathName.slice(-1) == '/') {
+                // There's a trailing slash.
+                path = pathName + path;
+            } else {
+                // If there is no trailing slash, we may not be at a directory.
+                var pathElements = pathName.split('/');
+                var pathLast = pathElements.pop();
+
+                // If we are at our landing page, rewind to its parent
+                // directory. Otherwise we assume we are already in a directory.
+                if (pathLast == landing_page) {
+                    pathName = pathElements.join('/');
+                }
+
+                path = pathName + '/' + path;
+            }
+        }
+
         /* Populate the controls if defaults are provided in the URL */
         UI.initSetting('host', window.location.hostname);
         UI.initSetting('port', port);
@@ -151,7 +176,7 @@ const UI = {
         UI.initSetting('shared', true);
         UI.initSetting('view_only', false);
         UI.initSetting('show_dot', false);
-        UI.initSetting('path', 'websockify');
+        UI.initSetting('path', path);
         UI.initSetting('repeaterID', '');
         UI.initSetting('reconnect', false);
         UI.initSetting('reconnect_delay', 5000);

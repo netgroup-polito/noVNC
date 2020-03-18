@@ -2,6 +2,17 @@
 <html lang="en" class="noVNC_loading">
 <head>
 
+    <script>
+        var baseElem = document.createElement("base");
+        var relPath = window.location.pathname;
+        if (relPath.length == 1) {
+            baseElem.setAttribute("href", "index.html");
+        } else {
+            baseElem.setAttribute("href", window.location.pathname + "/index.html");
+        }
+        document.getElementsByTagName("head")[0].appendChild(baseElem);
+    </script>
+
     <!--
     noVNC example: simple example using default UI
     Copyright (C) 2018 The noVNC Authors
@@ -326,5 +337,12 @@
         <source src="app/sounds/bell.oga" type="audio/ogg">
         <source src="app/sounds/bell.mp3" type="audio/mpeg">
     </audio>
- </body>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function() { 
+            document.getElementById("noVNC_setting_resize").selectedIndex = 2;
+            document.getElementById("noVNC_setting_resize").dispatchEvent(new Event("change"));
+        });
+    </script>
+</body>
 </html>
