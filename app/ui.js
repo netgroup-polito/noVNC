@@ -1123,7 +1123,7 @@ const UI = {
                 UI.showStatus(_("Something went wrong, connection is closed"),
                               'error');
             } else {
-                UI.showStatus(_("Failed to connect to server"), 'error');
+                UI.showStatus(_("Cookie expired - Please, reload the page"), 'error');
             }
         } else if (UI.getSetting('reconnect', false) === true && !UI.inhibit_reconnect) {
             UI.updateVisualState('reconnecting');
