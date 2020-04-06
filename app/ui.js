@@ -172,14 +172,14 @@ const UI = {
         UI.initSetting('port', port);
         UI.initSetting('encrypt', (window.location.protocol === "https:"));
         UI.initSetting('view_clip', false);
-        UI.initSetting('resize', 'off');
+        UI.initSetting('resize', 'remote');
         UI.initSetting('shared', true);
         UI.initSetting('view_only', false);
         UI.initSetting('show_dot', false);
         UI.initSetting('path', path);
         UI.initSetting('repeaterID', '');
-        UI.initSetting('reconnect', false);
-        UI.initSetting('reconnect_delay', 5000);
+        UI.initSetting('reconnect', true);
+        UI.initSetting('reconnect_delay', 100);
 
         UI.setupSettingLabels();
     },
